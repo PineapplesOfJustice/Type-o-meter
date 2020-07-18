@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Type-o-meter</title>
+        <link href="style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="assets/favicon/lightbulb.png" type="image/x-icon">
+    </head>
+    <body onresize="centerContainer();">
+        <div id="container">
+            <div id="introScreen">
+                <h1>Type-o-meter</h1>
+                <br>
+                <h2>Select Event:</h2>
+                <center>
+                    <button id="relayButton" class="selected" onclick="setEvent('relay');">Relay</button>
+                    <button id="precisionButton" onclick="setEvent('precision');">Precision</button>
+                    <button id="startButton" onclick="setupEvent();">Start</button>
+                </center>
+                <br>
+                <h2>Select Type:</h2>
+                <center>
+                    <button id="quoteButton" class="selected" onclick="setType('quote');">Quote</button>
+                    <button id="triviaButton" onclick="setType('trivia');">Trivia</button>
+                    <button id="paragraphButton" onclick="setType('paragraph');">Paragraph</button>
+                    <button id="wordButton" onclick="setType('word');">Word</button>
+                    <button id="characterButton" onclick="setType('character');">Character</button>
+                </center>
+            </div>
+
+            <div id="eventScreen" style="display: none;">
+                <h1>Type-o-meter</h1>
+                <div id="quoteSpace">
+                    <p id="targetText">...</p>
+                    <p id="targetSourceText">...</p>
+                </div>
+                <br>
+                <div id="inputSpace">
+                    <textarea id="userInput" onkeydown="checkUserInput(event);" oninput="checkUserInput_precision(); resizeInputField(this);" onfocus="resizeInputField(this, false);" onblur="resizeInputField(this);" ontransitionend="resizeInputField(this);" onpaste="fairPlayPatrol(event, 'paste');" ondrop="fairPlayPatrol(event, 'drop');" placeholder="Type quote here."></textarea>
+                    <button id="continueButton" onclick="checkUserInput({keyCode: 13, preventDefault: function(){}});">Enter</button>
+                </div>
+                <p id="targetAnswerText">...</p>
+            </div>
+
+            <div id="statScreen">
+                <h1>Stats:</h1>
+                <h2>Current:</h2>
+                <p id="currentStat_wpm">wpm (word/min): 0</p>
+                <p id="currentStat_time">time (min): 0</p>
+                <p id="currentStat_backspace">backspace (count): 0</p>
+                <p id="currentStat_error">error (count): 0</p>
+                <br>
+                <h2>Best:</h2>
+                <p id="bestStat_wpm">wpm (word/min): 0</p>
+                <p id="bestStat_time">time (min): 0</p>
+                <p id="bestStat_backspace">backspace (count): 0</p>
+                <p id="bestStat_error">error (count): 0</p>
+                <br>
+                <button id="exitButton" onclick="exitEvent();">Exit</button>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

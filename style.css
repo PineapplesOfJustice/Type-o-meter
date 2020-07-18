@@ -1,0 +1,219 @@
+/* Font */
+
+@font-face {
+    font-family: "chakraPetch";
+    src: url("assets/fonts/chakraPetch/font.ttf") format("truetype");
+}
+
+
+/* Variable */
+
+:root {
+	--container-width: 1200px;
+	--container-height: 640px;
+    --screen-padding: 15px;
+
+    --button-width: 120px;
+    --button-border: 1.5px;
+    --input-padding: 3px;
+}
+
+
+/* Main Body */
+
+html, body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+
+    color: white;
+    font-family: chakraPetch;
+}
+
+#container {
+    width: var(--container-width);
+    height: var(--container-height);
+    border: 2px solid white;
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#introScreen, #eventScreen {
+    flex: 4;
+    padding: var(--screen-padding);
+}
+
+#statScreen {
+    flex: 1;
+    border-left: 2px solid white;
+    padding: var(--screen-padding);
+}
+
+
+/* Text */
+
+h1 {
+    text-align: center;
+}
+
+
+/* Input Field */
+
+#inputSpace {
+    position: relative;
+}
+
+textarea {
+    width: 300px;
+    margin: auto;
+    padding: 0px 3px;
+
+    font-family: chakraPetch;
+    text-overflow: ellipsis;
+
+    opacity: 0.85;
+    transition: width 0.7s, opacity 0.7s;
+
+    /* for auto-resize feature */
+    resize: none;
+    overflow: auto;
+    min-height: 20px;
+}
+
+textarea:hover {
+    opacity: 1;
+}
+
+textarea:focus {
+    width: calc(100% - var(--button-width) - var(--screen-padding) - 2*var(--input-padding));
+    opacity: 1;
+    outline: none;
+}
+
+
+/* Button */
+
+button {
+    width: var(--button-width);
+    height: 24px;
+    background-color: black;
+    border: var(--button-border) solid white;
+    margin: 0px;
+
+    color: white;
+    font-family: chakraPetch;
+
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+
+button:hover {
+    color: gold;
+    border: var(--button-border) solid white;
+}
+
+button:focus {
+    outline: calc(2*var(--button-border)) double gold;
+}
+
+.selected {
+    color: gold;
+    border: var(--button-border) solid gold;
+}
+
+#startButton {
+    margin-left: 50px;
+}
+
+#startButton:hover {
+    color: springgreen;
+}
+
+#startButton:focus {
+    color: springgreen;
+    outline: calc(var(--button-border)) double springgreen;
+    margin-left: 0px;
+}
+
+#continueButton {
+    position: absolute;
+    top: 0px;
+    margin-left: 10px;
+}
+
+#exitButton:hover {
+    color: red;
+}
+
+#exitButton:focus {
+    color: red;
+    outline: calc(var(--button-border)) double red;
+}
+
+
+/* Quote Space */
+
+#quoteSpace {
+    width: 80%;
+    margin: auto;
+}
+
+#targetText {
+    font-size: 20px;
+    text-indent: 30px;
+}
+
+#targetText::before {
+    position: relative;
+    display: inline;
+    height: 0;
+    top: 20px;
+    left: -5px;
+
+    content: open-quote;
+    font-family: sans-serif;
+    font-size: 64px;
+    line-height: 0;
+}
+
+#targetText::after {
+    position: relative;
+    display: inline;
+    height: 0;
+    top: 25px;
+    left: 5px;
+
+    content: close-quote;
+    font-family: sans-serif;
+    font-size: 64px;
+    line-height: 0;
+}
+
+.targetIgnore {
+    color: darkgrey;
+}
+
+.targetEmphasis {
+    color: gold;
+}
+
+#targetSourceText {
+    margin-top: -20px;
+    text-align: right;
+}
+
+#targetSourceText::before {
+    content: "- ";
+}
+
+#targetAnswerText {
+    position: absolute;
+    bottom: calc(var(--screen-padding)/2);
+    left: calc(var(--screen-padding)/-2);
+    padding-top: 10px;
+
+    color: red;
+    background-color: black;
+    writing-mode: vertical-rl;
+}
